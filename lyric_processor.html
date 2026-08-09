@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가사 JSON 생성기</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 25px 30px;
+      text-align: center;
+    }
+    .header h1 { 
+      font-size: 26px; 
+      margin-bottom: 5px; 
+      font-weight: 700;
+    }
+    .header p {
+      font-size: 13px;
+      opacity: 0.95;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      padding: 30px;
+    }
+    .section { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px;
+    }
+    .section > div {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .section h2 {
+      font-size: 15px;
+      color: #222;
+      font-weight: 700;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    input[type="file"], input[type="text"], textarea {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      width: 100%;
+    }
+    input[type="file"] {
+      padding: 10px 12px;
+      cursor: pointer;
+      background: white;
+      position: relative;
+      border: 1px solid #ddd;
+    }
+    input[type="file"]::file-selector-button {
+      padding: 8px 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+    input[type="file"]::file-selector-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(102, 126, 234, 0.3);
+    }
+    input[type="file"]:hover {
+      border-color: #667eea;
+      background: #fafbff;
+    }
+    textarea {
+      min-height: 300px;
+      resize: vertical;
+      font-size: 13px;
+    }
+    .id-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .id-group > div {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .id-group input {
+      width: 100%;
+    }
+    .csv-upload {
+      border: 2px dashed #667eea;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      background: #fafbff;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-height: auto;
+    }
+    .csv-upload:hover {
+      background: #f0f3ff;
+      border-color: #764ba2;
+    }
+    .csv-upload.dragover {
+      background: #e7f0ff;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    .csv-upload.completed {
+      background: #d4edda;
+      border-color: #4caf50;
+      cursor: default;
+    }
+    .csv-upload.completed:hover {
+      background: #d4edda;
+      border-color: #4caf50;
+    }
+    .csv-upload input[type="file"] {
+      display: none;
+    }
+    .csv-upload-text {
+      font-size: 13px;
+      color: #667eea;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .csv-upload-sub {
+      font-size: 12px;
+      color: #999;
+    }
+    .csv-upload.completed .csv-upload-text {
+      color: #155724;
+    }
+    .csv-upload.completed .csv-upload-sub {
+      color: #155724;
+      font-size: 11px;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-convert {
+      flex: 1;
+    }
+    .btn-copy {
+      min-width: 120px;
+    }
+    .btn-convert {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .btn-convert:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .btn-convert:active {
+      transform: translateY(0);
+    }
+    .btn-copy {
+      background: #4caf50;
+      color: white;
+    }
+    .btn-copy:hover:not(:disabled) {
+      background: #45a049;
+      box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+    }
+    .btn-copy:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      color: #999;
+    }
+    .status {
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      display: none;
+      font-weight: 500;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+    label {
+      display: block;
+      font-size: 12px !important;
+      margin-bottom: 6px !important;
+      font-weight: 600 !important;
+      color: #333;
+    }
+    .output-section {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    #output {
+      flex: 1;
+      min-height: 100px;
+      background: #f8f9fa;
+      word-break: break-all;
+      overflow-y: auto;
+      border: 1px solid #e0e0e0;
+    }
+    .info-box {
+      background: #f0f7ff;
+      border-left: 3px solid #667eea;
+      padding: 10px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #555;
+      line-height: 1.4;
+    }
+    .section-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+    }
+    .section-header h2 {
+      margin: 0;
+      font-size: 15px;
+      color: #222;
+      font-weight: 700;
+      border: none;
+      padding: 0;
+    }
+    .toggle-switch-text {
+      font-size: 12px;
+      font-weight: 600;
+      min-width: 60px;
+      cursor: pointer;
+      color: #999;
+      user-select: none;
+    }
+    #quizMode:checked + .toggle-switch-text {
+      color: #222;
+    }
+    #quizMode {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎵 가사 JSON 생성기</h1>
+      <p>곡 정보를 JSON 형식으로 변환해주는 도구</p>
+    </div>
+
+    <div class="content">
+      <!-- 좌측: 입력 -->
+      <div class="section">
+        <h2>📥 입력 정보</h2>
+        
+        <div class="csv-upload" id="csvUploadArea">
+          <div class="csv-upload-text">📁 CSV 파일 선택</div>
+          <div class="csv-upload-sub">드래그하거나 클릭하여 업로드</div>
+          <input type="file" id="csvFile" accept=".csv">
+        </div>
+        <div id="csvStatus" class="status"></div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label id="inputLabel">곡 정보 + 가사</label>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox" id="quizMode">
+              <label for="quizMode" class="toggle-switch-text">초성퀴즈</label>
+            </div>
+          </div>
+          <textarea id="input" placeholder="멜론에서 곡 정보와 가사를 복붙해주세요"></textarea>
+        </div>
+
+        <div class="id-group">
+          <div>
+            <label>ID (선택)</label>
+            <input type="text" id="customId" placeholder="비우면 자동 증가">
+          </div>
+          <div>
+            <label>최근 ID</label>
+            <input type="text" id="lastId" value="0" readonly style="background: #f5f5f5;">
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn-convert" onclick="convert()">변환</button>
+        </div>
+
+        <div id="status" class="status"></div>
+      </div>
+
+      <!-- 우측: 출력 -->
+      <div class="section output-section">
+        <h2>📤 JSON 출력</h2>
+        <textarea id="output" style="background: #f8f9fa; color: #333;"></textarea>
+        <button class="btn-copy" id="copyBtn" onclick="copyToClipboard()" disabled>📋 복사</button>
+        <div class="info-box">
+          💡 ID는 사용자 입력이 우선, 없으면 최근 ID + 1
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let genreMap = {};
+    let artistTypeMap = {};
+    let lastIdValue = 0;
+    let lastIdValueQuiz = 0;
+
+    // CSV 업로드 영역
+    const csvUploadArea = document.getElementById('csvUploadArea');
+    const csvFileInput = document.getElementById('csvFile');
+
+    csvUploadArea.addEventListener('click', () => csvFileInput.click());
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      csvUploadArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      csvUploadArea.addEventListener(eventName, () => {
+        csvUploadArea.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      csvUploadArea.addEventListener(eventName, () => {
+        csvUploadArea.classList.remove('dragover');
+      });
+    });
+
+    csvUploadArea.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      csvFileInput.files = files;
+      handleCSVUpload(files[0]);
+    });
+
+    // CSV 파일 로드
+    csvFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) handleCSVUpload(file);
+    });
+
+    function handleCSVUpload(file) {
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const csv = event.target.result;
+          const lines = csv.trim().split('\n');
+          genreMap = {};
+          artistTypeMap = {};
+          lines.forEach((line, idx) => {
+            if (idx === 0) return; // 헤더 스킵
+            const parts = line.split(',').map(s => s.trim());
+            const artist = parts[0];
+            const genre = parts[1];
+            const artistType = parts[2];
+            if (artist && genre) {
+              genreMap[artist] = genre;
+              if (artistType) artistTypeMap[artist] = artistType;
+            }
+          });
+          
+          // 업로드 완료 표시
+          csvUploadArea.classList.add('completed');
+          csvUploadArea.querySelector('.csv-upload-text').textContent = `✓ ${file.name}`;
+          csvUploadArea.querySelector('.csv-upload-sub').textContent = `${Object.keys(genreMap).length}개 매핑 완료`;
+        } catch (err) {
+          showStatus('CSV 파일 오류: ' + err.message, 'error', 'csvStatus');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // 한국어 판별
+    function isKorean(str) {
+      return /[\uAC00-\uD7AF]/.test(str);
+    }
+
+    // 한국어 문자만 포함하는지 확인
+    function isOnlyKorean(str) {
+      return /^[\uAC00-\uD7AF\s]+$/.test(str);
+    }
+
+    // titleKo 계산
+    function getTitleKo(title) {
+      if (isOnlyKorean(title)) return '';
+      
+      const parenMatch = title.match(/^([^\(\)]+)\s*\(([^\)]+)\)$/);
+      if (parenMatch && isOnlyKorean(parenMatch[1])) {
+        return parenMatch[1];
+      }
+      
+      return '';
+    }
+
+    // 발매년도와 decade 계산
+    function getYearAndDecade(dateStr) {
+      const match = dateStr.match(/(\d{4})/);
+      if (!match) return { year: null, decade: null };
+      const year = parseInt(match[1]);
+      const decade = Math.floor(year / 10) * 10 + 's';
+      return { year, decade };
+    }
+
+    // 가사 정규화 (연속 줄바꿈 최대 2개)
+    function normalizeLyrics(lyricStr) {
+      let text = lyricStr.trim();
+      // 연속된 \n\n\n 이상을 \n\n으로 통일
+      text = text.replace(/\n{3,}/g, '\n\n');
+      return text;
+    }
+
+    // 가사 추출
+    function extractLyrics(text) {
+      const lyricIndex = text.indexOf('가사');
+      if (lyricIndex === -1) return '';
+      
+      // "가사" 다음부터 시작
+      let lyricText = text.substring(lyricIndex + 2).trim();
+      
+      // 첫 줄 제거 (프린트 가사오류신고 등)
+      const firstLineEnd = lyricText.indexOf('\n');
+      if (firstLineEnd !== -1) {
+        lyricText = lyricText.substring(firstLineEnd + 1);
+      }
+      
+      // 끝 마커 제거
+      const endMarkers = ['댓글', '공유', '담기', '어제의 차트'];
+      let endIndex = lyricText.length;
+      for (let marker of endMarkers) {
+        const idx = lyricText.indexOf(marker);
+        if (idx !== -1) endIndex = Math.min(endIndex, idx);
+      }
+      
+      return normalizeLyrics(lyricText.substring(0, endIndex));
+    }
+
+    // 발매일 추출
+    function extractDate(text) {
+      const dateMatch = text.match(/(\d{4}\.\d{2}\.\d{2})/);
+      return dateMatch ? dateMatch[1] : null;
+    }
+
+    // 메인 변환 함수
+    function convert() {
+      const isQuizMode = document.getElementById('quizMode').checked;
+      if (isQuizMode) {
+        convertQuiz();
+      } else {
+        convertFull();
+      }
+    }
+
+    // 전체 가사 변환
+    function convertFull() {
+      const input = document.getElementById('input').value.trim();
+      if (!input) {
+        showStatus('곡 정보를 입력하세요', 'error');
+        return;
+      }
+
+      try {
+        const lines = input.split('\n').map(l => l.trim()).filter(l => l);
+        if (lines.length < 2) {
+          showStatus('제목과 아티스트는 필수입니다', 'error');
+          return;
+        }
+
+        const title = lines[0];
+        const artist = lines[1];
+        const titleKo = getTitleKo(title);
+        const genre = genreMap[artist] || '';
+        const dateStr = extractDate(input);
+        const { year, decade } = dateStr ? getYearAndDecade(dateStr) : { year: null, decade: null };
+        const lyric = extractLyrics(input);
+
+        // ID 계산
+        let id;
+        const customId = document.getElementById('customId').value.trim();
+        if (customId) {
+          id = isNaN(customId) ? customId : 'fl' + customId;
+          lastIdValue = parseInt(customId) || lastIdValue;
+        } else {
+          lastIdValue++;
+          id = 'fl' + lastIdValue;
+        }
+        document.getElementById('lastId').value = lastIdValue;
+
+        const json = {
+          id,
+          title,
+          titleKo,
+          artist,
+          genre: genre || '',
+          year: year || null,
+          decade: decade || null,
+          lyric,
+          acceptedAnswers: []
+        };
+
+        const output = JSON.stringify(json);
+        document.getElementById('output').value = output;
+        document.getElementById('copyBtn').disabled = false;
+        showStatus('✓ 변환 완료', 'success');
+      } catch (err) {
+        showStatus('오류: ' + err.message, 'error');
+      }
+    }
+
+    // 초성퀴즈 가사 변환
+    function convertQuiz() {
+      const input = document.getElementById('input').value.trim();
+      if (!input) {
+        showStatus('곡 정보와 가사를 입력하세요', 'error');
+        return;
+      }
+
+      try {
+        const lines = input.split('\n').map(l => l.trim()).filter(l => l);
+        if (lines.length < 2) {
+          showStatus('제목과 아티스트는 필수입니다', 'error');
+          return;
+        }
+
+        const title = lines[0];
+        const artist = lines[1];
+        const titleKo = getTitleKo(title);
+        const genre = genreMap[artist] || '';
+        const artistType = artistTypeMap[artist] || '';
+        const dateStr = extractDate(input);
+        const { year, decade } = dateStr ? getYearAndDecade(dateStr) : { year: null, decade: null };
+        
+        // 초성퀴즈 모드에서도 extractLyrics 사용 (멜론 형식에서 가사 추출)
+        const lyric = extractLyrics(input);
+
+        // ID 계산
+        let id;
+        const customId = document.getElementById('customId').value.trim();
+        if (customId) {
+          id = isNaN(customId) ? customId : 'l' + customId;
+          lastIdValueQuiz = parseInt(customId) || lastIdValueQuiz;
+        } else {
+          lastIdValueQuiz++;
+          id = 'l' + lastIdValueQuiz;
+        }
+        document.getElementById('lastId').value = lastIdValueQuiz;
+
+        const json = {
+          id,
+          lyric,
+          lyricKo: lyric,
+          title,
+          titleKo,
+          decade: decade || null,
+          year: year || null,
+          genre: genre || '',
+          artist,
+          artistType: artistType || '',
+          acceptedAnswers: ['']
+        };
+
+        const output = JSON.stringify(json);
+        document.getElementById('output').value = output;
+        document.getElementById('copyBtn').disabled = false;
+        showStatus('✓ 초성퀴즈 데이터 생성 완료', 'success');
+      } catch (err) {
+        showStatus('오류: ' + err.message, 'error');
+      }
+    }
+
+    // 클립보드 복사
+    function copyToClipboard() {
+      const output = document.getElementById('output');
+      output.select();
+      document.execCommand('copy');
+      const btn = document.getElementById('copyBtn');
+      const original = btn.textContent;
+      btn.textContent = '✓ 복사됨';
+      setTimeout(() => btn.textContent = original, 2000);
+    }
+
+    // 상태 표시
+    function showStatus(msg, type, targetId = 'status') {
+      const el = document.getElementById(targetId);
+      el.textContent = msg;
+      el.className = 'status ' + type;
+      if (type === 'success') setTimeout(() => el.className = 'status', 3000);
+    }
+
+    // 초성퀴즈 모드 토글
+    document.getElementById('quizMode').addEventListener('change', (e) => {
+      // 토글 상태만 변경, 라벨은 항상 같음
+    });
+
+    // 엔터키로 변환
+    document.getElementById('input').addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') convert();
+    });
+  </script>
+</body>
+</html>
