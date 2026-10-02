@@ -1,0 +1,1596 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>연길·백두산 3박 4일 일정표</title>
+<style>
+:root{--bg:#f2f5f7;--card:#fff;--ink:#15232c;--mute:#5d6f7a;--line:#dbe3e8;--accent:#1c6f9c;--soft:#e1eef6;--chip:#eaf0f3;box-sizing:border-box}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f181e;--card:#16222a;--ink:#e6eef2;--mute:#93a6b1;--line:#26363f;--accent:#6bb6e0;--soft:#18323f;--chip:#1f2e37}}
+:root[data-theme="dark"]{--bg:#0f181e;--card:#16222a;--ink:#e6eef2;--mute:#93a6b1;--line:#26363f;--accent:#6bb6e0;--soft:#18323f;--chip:#1f2e37}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.55 -apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+header{padding:18px 16px 10px}
+h1{font-size:18px;margin:0 0 4px;letter-spacing:-.2px}
+header p{margin:0;color:var(--mute);font-size:11.5px}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs button{flex:1;padding:9px 2px 8px;border:0;background:none;color:var(--mute);font:inherit;font-size:12px;border-bottom:3px solid transparent;cursor:pointer;line-height:1.3}
+.tabs button b{display:block;font-size:13px}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+main{padding:12px 12px 4px}
+.panel[hidden]{display:none}
+.panel h2{font-size:14px;margin:2px 4px 8px}
+.wrap{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{font-weight:600;color:var(--mute);text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);background:var(--chip);font-size:11.5px}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.t{width:46px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.c,th.c{width:84px;text-align:right;color:var(--accent)}
+th.c{color:var(--mute)}
+td.c{font-variant-numeric:tabular-nums}
+.mv td:nth-child(2){color:var(--mute)}
+.chip{display:inline-block;margin-right:4px;padding:0 5px;border-radius:3px;background:var(--soft);color:var(--accent);font-size:10.5px}
+.note{margin:8px 4px 0;color:var(--mute);font-size:11.5px}
+.guide{padding:14px 12px 28px}
+.guide h2{font-size:14px;margin:0 4px 8px}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+summary{padding:10px 12px;font-weight:600;font-size:12.5px;cursor:pointer}
+summary:focus-visible{outline:2px solid var(--accent)}
+details>div{padding:0 12px 10px;font-size:12px}
+details ul,details ol{margin:0;padding-left:18px}
+details li{margin:3px 0}
+details p{margin:6px 0 0;color:var(--mute)}
+.ticket-card{padding:8px;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:30px;border-bottom:3px solid rgba(28,111,156,0.4)}
+.ticket-card:hover{background:var(--soft)}
+.modal{display:none;position:fixed;z-index:300;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);overflow:auto;padding:20px}
+.modal.active{display:flex;align-items:center;justify-content:center}
+.modal-content{background:var(--card);margin:0 auto;padding:0;width:90%;max-width:500px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid var(--line)}
+.modal-header h2{margin:0;font-size:16px}
+.modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--mute);padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{color:var(--ink)}
+.modal-tabs{display:flex;border-bottom:1px solid var(--line);padding:0 16px}
+.modal-tab-btn{flex:1;padding:12px 0;border:none;background:none;cursor:pointer;color:var(--mute);font-weight:600;font-size:12px;border-bottom:3px solid transparent;transition:all 0.2s}
+.modal-tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.modal-body{padding:16px;max-height:60vh;overflow-y:auto}
+.modal-image{width:100%;max-width:400px;margin:0 auto}
+.modal-image img{width:100%;display:block;margin-bottom:12px;border-radius:4px}
+.quick-link{padding:0;overflow:hidden;margin:14px 0 30px}
+.quick-link a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:linear-gradient(135deg,var(--soft) 0%, rgba(28,111,156,0.08) 100%);color:var(--ink);text-decoration:none;border-left:4px solid var(--accent)}
+.quick-link .label{display:block;font-size:10.5px;color:var(--accent);font-weight:700;letter-spacing:.2px}
+.quick-link .title{display:block;font-size:13px;font-weight:700;color:var(--ink)}
+.quick-link .sub{display:block;font-size:11px;color:var(--mute)}
+.quick-link .go{font-size:14px;color:var(--accent);font-weight:700}
+.quick-link a:hover .title{text-decoration:underline}
+.settle-box{padding:6px 12px 12px}
+.settle-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:10px}
+.settle-grid label{display:block;color:var(--mute);font-size:11px;margin-bottom:4px}
+.settle-grid input,.settle-add input,.settle-add select{width:100%;padding:7px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:inherit}
+.settle-grid input[type="number"],.settle-add input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+.settle-grid input[type="number"]::-webkit-outer-spin-button,.settle-grid input[type="number"]::-webkit-inner-spin-button,.settle-add input[type="number"]::-webkit-outer-spin-button,.settle-add input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.remote-status{display:none}
+.settle-add{display:grid;grid-template-columns:1fr 1fr 90px 1fr auto;gap:6px;align-items:end;margin-bottom:10px}
+.settle-add input,.settle-add select,.settle-add button{height:34px}
+.btn{border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:7px 10px;border-radius:6px;cursor:pointer;font:inherit;white-space:nowrap}
+.btn.primary{background:var(--soft);color:var(--accent);border-color:transparent}
+.btn.danger{background:#f9e4e4;color:#9e2f2f;border-color:transparent}
+.btn.mini-del{width:20px;height:20px;padding:0;border-radius:999px;border:0;background:transparent;color:var(--mute);font-size:12px;line-height:1;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease}
+.btn.mini-del:hover{background:var(--soft);color:var(--ink)}
+.btn.mini-del:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.btn.icon-close{border:0;background:none;color:var(--mute);width:32px;height:32px;padding:0;font-size:24px;display:flex;align-items:center;justify-content:center}
+.btn.icon-close:hover{color:var(--ink)}
+.settle-header-tools{display:flex;gap:2px;align-items:center}
+.btn.icon-plain{border:0;background:none;color:var(--mute);width:30px;height:30px;padding:0;display:inline-flex;align-items:center;justify-content:center;font-size:16px}
+.btn.icon-plain:hover{color:var(--mute);background:none;border-radius:999px}
+.btn.icon-plain:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:999px}
+.btn.login-btn{width:auto;padding:0 6px;font-size:10px;font-weight:700;letter-spacing:.2px}
+.btn.settings-btn{font-size:18px}
+.settle-inline-tools{display:flex;align-items:center;justify-content:flex-end;gap:2px;margin:0 0 4px}
+.pull-indicator{height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--mute);font-size:11px;transition:height .16s ease, opacity .16s ease;opacity:0;pointer-events:none;}.pull-indicator.active{opacity:1}
+.pull-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;font-size:13px}
+.pull-content{transform:translateY(0);transition:transform .16s ease}
+.edit-toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(10px);padding:8px 12px;border-radius:999px;background:rgba(21,35,44,0.92);color:#fff;font-size:11.5px;line-height:1.35;opacity:0;pointer-events:none;transition:opacity .18s ease, transform .18s ease;z-index:140;white-space:nowrap}
+.edit-toast.active{opacity:1;transform:translateX(-50%) translateY(0)}
+.settings-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;margin-bottom:8px}
+.participants-box h3{margin:0 0 8px;font-size:12.5px}
+.participants-box{border:1px solid var(--line);border-radius:6px;padding:8px;background:var(--card)}
+.participant-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.participant-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:11px;font-weight:600}
+.participant-chip button{border:0;background:none;color:inherit;cursor:pointer;font-size:12px;line-height:1;padding:0}
+.participant-add{display:grid;grid-template-columns:1fr auto;gap:6px}
+.unlock-error{margin:8px 0 0;color:#c23a3a;font-size:11px;min-height:17px}
+.unlock-status{margin:0;color:var(--mute);font-size:12px}
+.unlock-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.settle-result{margin-top:10px;padding:10px;border-radius:6px;background:var(--chip)}
+.settle-result h3{margin:0 0 8px;font-size:12.5px}
+.settle-result ul{margin:0;padding-left:18px}
+.settle-result li{margin:2px 0}
+.expense-pending td{color:var(--mute);opacity:.64}
+.expense-pending .include-cell,.expense-pending .include-cell input{opacity:1}
+#expenseTable .amount-cell small{display:block;color:var(--mute);font-size:10px;line-height:1.3;margin-top:1px}
+#expenseTable .amount-cell.krw-only small{display:none}
+.th-inline-toggle{display:inline-flex;align-items:center;gap:4px}
+.th-toggle-btn{border:1px solid var(--line);background:var(--chip);color:var(--mute);padding:2px 5px;border-radius:999px;font:inherit;font-size:10px;font-weight:700;line-height:1;cursor:pointer}
+.th-toggle-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+#expenseTable th.c,#expenseTable td.c{width:70px}
+#expenseTable .payer-cell{width:35px;min-width:30px;white-space:nowrap;text-align:center}
+#expenseTable .amount-cell{text-align:right;width:70px;min-width:76px;white-space:nowrap;font-variant-numeric:tabular-nums}
+#expenseTable .include-cell{text-align:center;width:25px;min-width:20px;padding-left:4px;padding-right:4px}
+#expenseTable input[type="checkbox"]{width:14px;height:14px;accent-color:var(--accent)}
+#expenseTable tr.swipe-row{touch-action:pan-y;transition:transform .16s ease}
+#expenseTable tr.swipe-armed td{background:var(--soft)}
+#expenseTable tr:last-child td{border-bottom:1px solid var(--line)}
+#transferBox{background:#fff8d9;border:1px solid #f0e2a4}
+:root[data-theme="dark"] #transferBox{background:#3a341f;border-color:#6e6235}
+.settlement-page{position:fixed;inset:0;z-index:120;background:var(--bg);display:none;overflow-y:auto;pointer-events:none}.settlement-page.active{pointer-events:auto}
+.settlement-page.active{display:block}
+.settlement-page header{position:sticky;top:0;z-index:2;background:var(--bg);padding:12px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.settlement-page h2{margin:0;font-size:15px}
+.settlement-page .content{padding:12px 12px 20px}
+.no-scroll{overflow:hidden}
+.floating-settle{position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:90;border:0;border-radius:999px;padding:11px 14px;background:linear-gradient(135deg,#2f7f49,#3d9a5a);color:#fff;font:600 12.5px/1 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;box-shadow:0 8px 18px rgba(0,0,0,0.22);cursor:pointer}
+.floating-settle:active{transform:translateY(1px)}
+@media (max-width:720px){
+  .settle-grid{grid-template-columns:1fr}
+  .settle-add{grid-template-columns:1fr 1fr 1fr 1fr}
+  .settle-add .btn{grid-column:1 / -1}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>⛰️ 연길·백두산 3박 4일 ⛰️</h1>
+<p>2026.10.07 ~ 2026.10.10 </p>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="일차 선택">
+<button role="tab" aria-selected="true" aria-controls="p0" id="t0"><b>여행 전</b>안내 사항</button>
+<button role="tab" aria-selected="false" aria-controls="p1" id="t1"><b>1일차</b>연길</button>
+<button role="tab" aria-selected="false" aria-controls="p2" id="t2"><b>2일차</b>북파</button>
+<button role="tab" aria-selected="false" aria-controls="p3" id="t3"><b>3일차</b>서파</button>
+<button role="tab" aria-selected="false" aria-controls="p4" id="t4"><b>4일차</b>귀국</button>
+</nav>
+
+<main>
+<section class="panel" id="p0" role="tabpanel" aria-labelledby="t0">
+<h2>예약 정보</h2>
+<div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-bottom:20px;">
+<div class="wrap ticket-card" onclick="openModal('baekdusanModal')">
+<div style="font-size:20px; margin-bottom:4px;">🎫</div>
+<div style="font-weight:600; font-size:13px; color:var(--ink);">백두산</div>
+</div>
+
+<div class="wrap ticket-card" onclick="openModal('hotelModal')">
+<div style="font-size:20px; margin-bottom:4px;">🏨</div>
+<div style="font-weight:600; font-size:13px; color:var(--ink);">호텔</div>
+</div>
+
+<div class="wrap ticket-card" onclick="openModal('taxiModal')">
+<div style="font-size:20px; margin-bottom:4px;">🚕</div>
+<div style="font-weight:600; font-size:13px; color:var(--ink);">교통</div>
+</div>
+</div>
+
+<h2 style="margin-top:20px;">체크 리스트</h2>
+<div class="wrap"><table>
+<tr><th colspan="2">준비할 것</th></tr>
+<tr><td style="padding:8px"><input type="checkbox"> <b>위챗(WeChat)</b> 가입 · 실명인증</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> 중국 VPN 앱 설치 (Transocks 등)</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> 위챗페이에 해외카드 등록</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> <b>알리페이</b> 가입 · 설정</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> 타오바오 앱 설치 · 계정 가입</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> DiDi 앱 설치</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> 호텔 예약 바우처 (Ji호텔, 레지나호텔)</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> 여행자 보험 (선택)</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> <b>여권</b> 준비 (항상 소지)</td></tr>
+<tr><td style="padding:8px"><input type="checkbox"> 충전기·멀티탭·따뜻한 겉옷·수영복 준비</td></tr>
+</table></div>
+
+<div class="wrap quick-link">
+<a href="https://m.blog.naver.com/pumingi/224381453604" target="_blank" rel="noopener noreferrer">
+<span>
+<span class="label">RESERVATION GUIDE</span>
+<span class="title">예약 가이드 바로가기</span>
+</span>
+<span class="go">↗</span>
+</a>
+</div>
+</section>
+
+<section class="panel" id="p1" role="tabpanel" aria-labelledby="t1" hidden>
+<h2>연길 도착 · 야시장</h2>
+<div class="wrap"><table>
+<tr><th>시간</th><th>일정</th><th class="c">비용</th></tr>
+<tr><td class="t">15:20</td><td>인천 T2 출발 (OZ351, 약 2시간 10분)</td><td class="c">항공권</td></tr>
+<tr><td class="t">16:30</td><td>옌지 공항 도착 (시차 -1시간)</td><td class="c">-</td></tr>
+<tr><td class="t">17:30</td><td>입국 · 짐 수령</td><td class="c">-</td></tr>
+<tr class="mv"><td class="t">18:00</td><td><span class="chip">이동</span>공항 → 시내 호텔 택시 (약 30분)</td><td class="c">30~50</td></tr>
+<tr><td class="t">18:30</td><td>호텔 체크인</td><td class="c">-</td></tr>
+<tr><td class="t">19:30</td><td>연길 야시장 · 저녁</td><td class="c">식비</td></tr>
+</table></div>
+<p class="note">내일 이른 시각에 출발하니 야시장은 일찍 마무리하세요.</p>
+</section>
+
+<section class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+<h2>연길 호텔 → 레지나 호텔 → 북파</h2>
+<div class="wrap"><table>
+<tr><th>시간</th><th>일정</th><th class="c">비용</th></tr>
+<tr class="mv"><td class="t">08:00</td><td><span class="chip">이동</span>Ji 호텔 → 레지나호텔 택시* (약 2.5시간)</td><td class="c">500</td></tr>
+<tr><td class="t">10:30</td><td>레지나 도착 · 체크인 · 짐 보관</td><td class="c">-</td></tr>
+<tr class="mv"><td class="t">11:00</td><td><span class="chip">이동</span>호텔 → 북파 관광센터 택시 (약 20-30분)</td><td class="c">단거리</td></tr>
+<tr><td class="t">11:30</td><td>북파 경구 입장권 확인 (11:30~12:00)</td><td class="c">225</td></tr>
+<tr><td class="t">11:45</td><td>셔틀버스 탑승 (약 16km)</td><td class="c">포함</td></tr>
+<tr><td class="t">12:30</td><td>짚차/케이블카 탑승 → 천지 전망대 도착</td><td class="c">포함</td></tr>
+<tr><td class="t">12:50</td><td>천지 관광 및 관찰 (약 30-40분)</td><td class="c">-</td></tr>
+<tr><td class="t">13:30</td><td>지하산 · 중간 식당가에서 점심식사</td><td class="c">식비</td></tr>
+<tr><td class="t">14:30</td><td>온천지대 · 장백폭포 관광</td><td class="c">-</td></tr>
+<tr class="mv"><td class="t">16:30</td><td><span class="chip">이동</span>하산 → 호텔 택시</td><td class="c">단거리</td></tr>
+<tr><td class="t">17:00</td><td>호텔 도착 · 휴식</td><td class="c">-</td></tr>
+<tr><td class="t">18:00</td><td>호텔 온천 · 저녁식사</td><td class="c">식비</td></tr>
+</table></div>
+<p class="note">*택시는 타오바오에서 '延吉 二道白河 包车(연길→이도백하 전세차)'로 검색해 예약하세요. 호텔 픽업 가능 확인이 중요해요. 11:30-12:00 입장 시간에 맞춰 관광센터 도착이 필수입니다.</p>
+</section>
+
+<section class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+<h2>레지나 호텔 → 서파</h2>
+<div class="wrap"><table>
+<tr><th>시간</th><th>일정</th><th class="c">비용</th></tr>
+<tr class="mv"><td class="t">08:00</td><td><span class="chip">이동</span>호텔 → 서파 관광센터 택시* (약 1시간)</td><td class="c">200</td></tr>
+<tr><td class="t">09:00</td><td>서파 입장권 확인</td><td class="c">-</td></tr>
+<tr><td class="t">09:30</td><td>셔틀 탑승 · 소도천 도착</td><td class="c">입장권 포함</td></tr>
+<tr><td class="t">10:00</td><td>1,442 계단</td><td class="c">-</td></tr>
+<tr><td class="t">11:00</td><td>천지 도착 · 관광</td><td class="c">-</td></tr>
+<tr><td class="t">12:00</td><td>하산</td><td class="c">-</td></tr>
+<tr><td class="t">12:30</td><td>관광센터 도착 · 음료/간식</td><td class="c">-</td></tr>
+<tr class="mv"><td class="t">13:30</td><td><span class="chip">이동</span>서파 → 호텔 택시* (약 1시간)</td><td class="c">왕복 포함</td></tr>
+<tr><td class="t">14:30</td><td>호텔 도착 · 짧은 휴식 또는 카페 방문</td><td class="c">-</td></tr>
+<tr><td class="t">16:30</td><td>시내 로컬 마사지</td><td class="c">80~120</td></tr>
+<tr><td class="t">17:30</td><td>저녁 식사 </td><td class="c">식비</td></tr>
+<tr><td class="t">19:30</td><td>샤워 · 호텔 온천</td><td class="c">-</td></tr>
+<tr><td class="t">22:00</td><td>휴식</td><td class="c">-</td></tr>
+</table></div>
+<p class="note">*택시는 타오바오에서 '二道白河 长白山西坡 包车 往返(이도백하→서파 왕복 전세차)'로 검색해 예약하세요. 왕복(픽업 + 기사 대기)으로 예약하는 게 중요해요. 서파 입장은 15:30까지만 가능하니 시간을 맞춰 예약하세요. 마사지 숍은 호텔 프론트에 문의해서 가까운 곳 추천받으면 편합니다.</p>
+</section>
+
+<section class="panel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+<h2>레지나호텔 → 연길 → 귀국</h2>
+<div class="wrap"><table>
+<tr><th>시간</th><th>일정</th><th class="c">비용</th></tr>
+<tr><td class="t">10:20</td><td>호텔 체크아웃</td><td class="c">-</td></tr>
+<tr class="mv"><td class="t">10:30</td><td><span class="chip">이동</span>호텔 → 장백산역 택시* (이동)</td><td class="c">택시비</td></tr>
+<tr><td class="t">10:40</td><td>장백산역 도착 · 기차/승강장 확인</td><td class="c">-</td></tr>
+<tr><td class="t">11:57</td><td>기차 탑승</td><td class="c">기차표</td></tr>
+<tr><td class="t">13:53</td><td>기차 하차</td><td class="c">-</td></tr>
+<tr><td class="t">14:30</td><td>연길 서시장 · 기념품 쇼핑</td><td class="c">쇼핑</td></tr>
+<tr class="mv"><td class="t">16:00</td><td><span class="chip">이동</span>시내 → 연길공항 택시 (약 20분)</td><td class="c">30~50</td></tr>
+<tr><td class="t">16:30</td><td>공항 도착 · 수속</td><td class="c">-</td></tr>
+<tr><td class="t">17:30</td><td>옌지 출발 (OZ352, 약 2시간 50분)</td><td class="c">항공권</td></tr>
+<tr><td class="t">21:20</td><td>인천 T2 도착 (시차 +1시간)</td><td class="c">-</td></tr>
+</table></div>
+<p class="note">*장백산역은 역 규모가 커서 승강장 찾는 데 시간이 걸릴 수 있어요. 출발 최소 1시간 전에는 도착해 여유 있게 대기하세요.</p>
+</section>
+</main>
+
+<button class="floating-settle" type="button" onclick="openSettlementPage()" aria-label="정산 열기">💸 정산</button>
+
+<section id="settlementPage" class="settlement-page" aria-hidden="true">
+<header>
+<h2>여행 비용 정산</h2>
+<div class="settle-header-tools">
+<button class="btn icon-close" id="closeSettlementBtn" type="button" aria-label="닫기">✕</button>
+</div>
+</header>
+<div class="content">
+<div class="wrap settle-box">
+<p id="remoteStatus" class="remote-status">공유 저장 준비 중...</p>
+<div id="pullRefreshIndicator" class="pull-indicator" aria-hidden="true"><span class="pull-icon">↻</span><span id="pullRefreshText">새로고침하기</span></div>
+<div id="pullContent" class="pull-content">
+
+<div class="settle-inline-tools" aria-label="정산 도구">
+<button class="btn icon-plain login-btn" id="unlockBtn" type="button" aria-label="로그인" title="로그인">LOG IN</button>
+<button class="btn icon-plain settings-btn" id="openSettingsBtn" type="button" aria-label="설정" title="설정">⚙</button>
+</div>
+
+<div class="settle-add">
+<select id="payerInput"></select>
+<input id="itemInput" type="text" placeholder="항목">
+<select id="currencyInput">
+<option value="KRW">KRW</option>
+<option value="CNY">CNY</option>
+</select>
+<input id="amountInput" type="number" min="0" step="0.01" placeholder="금액">
+<button class="btn primary" id="addExpenseBtn" type="button">항목 추가</button>
+</div>
+
+<table id="expenseTable">
+<thead>
+<tr><th class="payer-cell">결제</th><th>항목</th><th class="amount-cell"><span class="th-inline-toggle">금액 <button class="th-toggle-btn" id="toggleKrwViewBtn" type="button" aria-label="원화로만 보기" title="원화로만 보기">₩</button></span></th><th class="include-cell">정산</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<div class="settle-result" id="summaryBox">
+<h3>정산 요약</h3>
+<div id="summaryContent">항목을 추가하면 자동 계산됩니다.</div>
+</div>
+
+<div class="settle-result" id="transferBox">
+<h3>송금 가이드</h3>
+<div id="transferContent">항목을 추가하면 누가 누구에게 보내야 하는지 표시됩니다.</div>
+</div>
+</div>
+</div>
+</div>
+<div id="editNoticeToast" class="edit-toast" aria-hidden="true">로그인 해주세요! 현재 변경은 이 기기에만 저장돼요.</div>
+</section>
+
+<div id="settingsModal" class="modal" aria-hidden="true">
+<div class="modal-content">
+<div class="modal-header">
+<h2>⚙ 설정</h2>
+<button class="modal-close" id="closeSettingsBtn" type="button">✕</button>
+</div>
+<div class="modal-body">
+<div class="participants-box" style="margin-bottom:10px;">
+<h3>정산 설정</h3>
+<div class="settings-row">
+<div>
+<label for="fxRateInput" style="display:block;color:var(--mute);font-size:11px;margin-bottom:4px;">환율 (1 CNY = ? KRW)</label>
+<input id="fxRateInput" type="number" min="0" step="0.01" value="190" style="width:100%;padding:7px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:inherit">
+</div>
+<button class="btn" id="applyFxBtn" type="button">적용</button>
+</div>
+</div>
+
+<div class="participants-box">
+<h3>참여자 관리</h3>
+<div id="participantList" class="participant-list"></div>
+<div class="participant-add">
+<input id="participantInput" type="text" placeholder="참여자 이름 추가">
+<button class="btn" id="addParticipantBtn" type="button">추가</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="unlockModal" class="modal" aria-hidden="true">
+<div class="modal-content" style="max-width:360px;">
+<div class="modal-header">
+<h2>🔒 잠금 해제</h2>
+<button class="modal-close" id="closeUnlockBtn" type="button">✕</button>
+</div>
+<div class="modal-body">
+<div id="unlockFormSection">
+<input id="unlockPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="PIN 4자리 입력" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:inherit">
+<p id="unlockError" class="unlock-error"></p>
+<div class="unlock-actions">
+<button class="btn" id="unlockSubmitBtn" type="button">확인</button>
+</div>
+</div>
+<div id="unlockLoggedInSection" hidden>
+<p class="unlock-status">로그인 되어 있습니다.</p>
+<div class="unlock-actions">
+<button class="btn" id="logoutBtn" type="button">로그아웃</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+<!-- 호텔 바우처 모달 -->
+<div id="hotelModal" class="modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>🏨 호텔 바우처</h2>
+<button class="modal-close" onclick="closeModal('hotelModal')">✕</button>
+</div>
+<div class="modal-tabs">
+<button class="modal-tab-btn active" onclick="switchHotelTab('ji')">Ji호텔</button>
+<button class="modal-tab-btn" onclick="switchHotelTab('regina')">레지나호텔</button>
+</div>
+<div class="modal-body">
+<div id="hotelJi" class="modal-image">
+<img src="images/hotel_ji.jpg" alt="Ji호텔 바우처">
+</div>
+<div id="hotelRegina" class="modal-image" style="display:none">
+<img src="images/hotel_regina.jpg" alt="레지나호텔 바우처">
+</div>
+</div>
+</div>
+</div>
+
+<!-- 택시 예약 모달 -->
+<div id="taxiModal" class="modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>🚕 교통 예약 내역</h2>
+<button class="modal-close" onclick="closeModal('taxiModal')">✕</button>
+</div>
+<div class="modal-tabs">
+<button class="modal-tab-btn active" onclick="switchTaxiTab('route1')">연길→레지나</button>
+<button class="modal-tab-btn" onclick="switchTaxiTab('route2')">레지나↔서파</button>
+<button class="modal-tab-btn" onclick="switchTaxiTab('route3')">레지나→연길</button>
+</div>
+<div class="modal-body">
+<div id="taxiRoute1" class="modal-image">
+<img src="images/taxi_yj_regina.jpg" alt="연길→레지나 예약">
+</div>
+<div id="taxiRoute2" class="modal-image" style="display:none">
+<img src="images/taxi_regina_wp.jpg" alt="레지나↔서파 예약">
+</div>
+<div id="taxiRoute3" class="modal-image" style="display:none">
+<img src="images/taxi_regina_yj.jpg" alt="레지나→연길 예약">
+</div>
+</div>
+</div>
+</div>
+
+<!-- 백두산 입장권 모달 -->
+<div id="baekdusanModal" class="modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>🎫 백두산 입장권</h2>
+<button class="modal-close" onclick="closeModal('baekdusanModal')">✕</button>
+</div>
+<div class="modal-tabs">
+<button class="modal-tab-btn active" onclick="switchBaekdusanTab('north_somin')">북파 소민</button>
+<button class="modal-tab-btn" onclick="switchBaekdusanTab('north_ayoung')">북파 아영</button>
+<button class="modal-tab-btn" onclick="switchBaekdusanTab('south_somin')">서파 소민</button>
+<button class="modal-tab-btn" onclick="switchBaekdusanTab('south_ayoung')">서파 아영</button>
+</div>
+<div class="modal-body">
+<div id="baekdusanNorthSomin" class="modal-image">
+<img src="images/ticket_baekdosan_north_somin.jpg" alt="북파 소민 입장권">
+</div>
+<div id="baekdusanNorthAyoung" class="modal-image" style="display:none">
+<img src="images/ticket_baekdosan_north_ayoung.jpg" alt="북파 아영 입장권">
+</div>
+<div id="baekdusanSouthSomin" class="modal-image" style="display:none">
+<img src="images/ticket_baekdosan_south_somin.jpg" alt="서파 소민 입장권">
+</div>
+<div id="baekdusanSouthAyoung" class="modal-image" style="display:none">
+<img src="images/ticket_baekdosan_south_ayoung.jpg" alt="서파 아영 입장권">
+</div>
+</div>
+</div>
+</div>
+
+<!-- 모달 배경 클릭 시 닫기 -->
+<script>
+window.onclick = function(event) {
+  var hotelModal = document.getElementById('hotelModal');
+  var taxiModal = document.getElementById('taxiModal');
+  var baekdusanModal = document.getElementById('baekdusanModal');
+  if (event.target == hotelModal) hotelModal.classList.remove('active');
+  if (event.target == taxiModal) taxiModal.classList.remove('active');
+  if (event.target == baekdusanModal) baekdusanModal.classList.remove('active');
+}
+
+function openModal(modalId) {
+  document.getElementById(modalId).classList.add('active');
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('active');
+}
+
+function toggleSettlementPage(isOpen) {
+  var page = document.getElementById('settlementPage');
+  if (!page) return;
+  page.classList.toggle('active', !!isOpen);
+  page.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  document.body.classList.toggle('no-scroll', !!isOpen);
+}
+
+function openSettlementPage() {
+  if (location.hash !== '#settlement') {
+    location.hash = 'settlement';
+    return;
+  }
+  toggleSettlementPage(true);
+  window.dispatchEvent(new CustomEvent('settlement:opened'));
+}
+
+function closeSettlementPage() {
+  if (location.hash === '#settlement') {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  toggleSettlementPage(false);
+}
+
+function switchHotelTab(tab) {
+  document.getElementById('hotelJi').style.display = tab === 'ji' ? 'block' : 'none';
+  document.getElementById('hotelRegina').style.display = tab === 'regina' ? 'block' : 'none';
+  document.querySelectorAll('#hotelModal .modal-tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function switchTaxiTab(route) {
+  document.getElementById('taxiRoute1').style.display = route === 'route1' ? 'block' : 'none';
+  document.getElementById('taxiRoute2').style.display = route === 'route2' ? 'block' : 'none';
+  document.getElementById('taxiRoute3').style.display = route === 'route3' ? 'block' : 'none';
+  document.querySelectorAll('#taxiModal .modal-tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function switchBaekdusanTab(option) {
+  document.getElementById('baekdusanNorthSomin').style.display = option === 'north_somin' ? 'block' : 'none';
+  document.getElementById('baekdusanNorthAyoung').style.display = option === 'north_ayoung' ? 'block' : 'none';
+  document.getElementById('baekdusanSouthSomin').style.display = option === 'south_somin' ? 'block' : 'none';
+  document.getElementById('baekdusanSouthAyoung').style.display = option === 'south_ayoung' ? 'block' : 'none';
+  document.querySelectorAll('#baekdusanModal .modal-tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+window.addEventListener('hashchange', function() {
+  var open = location.hash === '#settlement';
+  toggleSettlementPage(open);
+  if (open) window.dispatchEvent(new CustomEvent('settlement:opened'));
+});
+
+if (location.hash === '#settlement') {
+  toggleSettlementPage(true);
+}
+
+(function(){
+var key = 'baekdu_settlement_v1';
+// HTML 관리자용 공유 설정값
+var travelCode = '2610yb';
+var tripPin = '2610';
+var state = {
+  participants: ['소민', '아영'],
+  fxRate: 190,
+  expenses: [],
+  deletedExpenseIds: [],
+  pendingMeta: { participants: false, fxRate: false }
+};
+var uiState = {
+  showKrwOnly: false
+};
+var remote = {
+  db: null,
+  enabled: false,
+  unsub: null,
+  syncTimer: null,
+  applying: false
+};
+
+var firebaseConfig = {
+  apiKey: "AIzaSyDemDlX73nIOp0sqNSzTR-YQ0b4MAUMuLM",
+  authDomain: "travel-settlement-f3949.firebaseapp.com",
+  projectId: "travel-settlement-f3949",
+  storageBucket: "travel-settlement-f3949.firebasestorage.app",
+  messagingSenderId: "586979034221",
+  appId: "1:586979034221:web:e64a617e26b733f338ab64",
+  measurementId: "G-579R0KKQKH"
+};
+
+function byId(id){ return document.getElementById(id); }
+function asNumber(v){ var n = parseFloat(v); return isNaN(n) ? 0 : n; }
+function fmtKrw(v){ return Math.round(v).toLocaleString('ko-KR') + '원'; }
+function fmtCny(v){ return v.toFixed(2).replace(/\.00$/, '') + '위안'; }
+function fmtKrwSymbol(v){ return '₩' + Math.round(v).toLocaleString('ko-KR'); }
+function fmtCnySymbol(v){ return '¥' + v.toFixed(2).replace(/\.00$/, ''); }
+
+function setRemoteStatus(msg){
+  var el = byId('remoteStatus');
+  if(!el) return;
+  var text = String(msg || '').trim();
+  if(text === '잠금 상태입니다. 사용자 버튼에서 PIN을 입력해 주세요') text = '';
+  el.textContent = text;
+}
+
+function setPullIndicator(text, distance, active){
+  var indicator = byId('pullRefreshIndicator');
+  var label = byId('pullRefreshText');
+  var content = byId('pullContent');
+  var shown = Math.max(0, Math.min(distance || 0, 64));
+  if(indicator){
+    indicator.style.height = shown + 'px';
+    indicator.classList.toggle('active', !!active || shown > 0);
+    indicator.setAttribute('aria-hidden', shown > 0 ? 'false' : 'true');
+  }
+  if(label && text) label.textContent = text;
+  if(content) content.style.transform = shown > 0 ? 'translateY(' + Math.min(shown, 40) + 'px)' : '';
+}
+
+var editToastTimer = null;
+function showEditNotice(message){
+  var toast = byId('editNoticeToast');
+  if(!toast) return;
+  toast.textContent = message || '로그인 해주세요! 현재 변경은 이 기기에만 저장돼요.';
+  toast.classList.add('active');
+  toast.setAttribute('aria-hidden', 'false');
+  if(editToastTimer) clearTimeout(editToastTimer);
+  editToastTimer = setTimeout(function(){
+    toast.classList.remove('active');
+    toast.setAttribute('aria-hidden', 'true');
+  }, 3200);
+}
+
+function clearPendingSync(){
+  (state.expenses || []).forEach(function(exp){ delete exp._pendingSync; });
+  state.deletedExpenseIds = [];
+  state.pendingMeta = { participants: false, fxRate: false };
+}
+
+function markExpensePending(idx){
+  if(!state.expenses || !state.expenses[idx]) return;
+  state.expenses[idx]._pendingSync = true;
+}
+
+function markAllExpensesPending(){
+  (state.expenses || []).forEach(function(exp){ exp._pendingSync = true; });
+}
+
+function markPendingMeta(key){
+  state.pendingMeta = normalizePendingMeta(state.pendingMeta);
+  if(state.pendingMeta.hasOwnProperty(key)) state.pendingMeta[key] = true;
+}
+
+function hasPendingSync(){
+  return (state.expenses || []).some(function(exp){ return !!exp._pendingSync; }) ||
+    !!((state.deletedExpenseIds || []).length) ||
+    !!(state.pendingMeta && (state.pendingMeta.participants || state.pendingMeta.fxRate));
+}
+
+function createExpenseId(){
+  return 'exp_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+}
+
+function ensureExpenseId(exp){
+  if(!exp.id) exp.id = createExpenseId();
+  return exp.id;
+}
+
+function normalizeExpense(exp){
+  var clean = {
+    id: ensureExpenseId(exp || {}),
+    payer: String((exp && exp.payer) || '').trim(),
+    item: String((exp && exp.item) || '').trim(),
+    currency: exp && exp.currency === 'CNY' ? 'CNY' : 'KRW',
+    amount: asNumber(exp && exp.amount),
+    included: !exp || exp.included !== false
+  };
+  if(exp && exp._pendingSync) clean._pendingSync = true;
+  return clean;
+}
+
+function normalizePendingMeta(meta){
+  return {
+    participants: !!(meta && meta.participants),
+    fxRate: !!(meta && meta.fxRate)
+  };
+}
+
+function expenseSignature(exp){
+  return [
+    String((exp && exp.payer) || '').trim(),
+    String((exp && exp.item) || '').trim(),
+    exp && exp.currency === 'CNY' ? 'CNY' : 'KRW',
+    String(asNumber(exp && exp.amount)),
+    exp && exp.included !== false ? '1' : '0'
+  ].join('||');
+}
+
+function mergeRemoteWithPending(remoteData){
+  var merged = {
+    participants: Array.isArray(remoteData && remoteData.participants) ? remoteData.participants.slice() : getParticipants().slice(),
+    fxRate: asNumber(remoteData && remoteData.fxRate) || 190,
+    expenses: []
+  };
+  var deletedIds = {};
+  (state.deletedExpenseIds || []).forEach(function(id){ if(id) deletedIds[id] = true; });
+  var byId = {};
+  var signatureToId = {};
+
+  (Array.isArray(remoteData && remoteData.expenses) ? remoteData.expenses : []).forEach(function(exp){
+    var hadId = !!(exp && exp.id);
+    var clean = normalizeExpense(exp);
+    if(deletedIds[clean.id]) return;
+    var sig = expenseSignature(clean);
+    if(signatureToId[sig]) return;
+    byId[clean.id] = clean;
+    signatureToId[sig] = clean.id;
+    if(!hadId) clean._legacyNoId = true;
+  });
+
+  (state.expenses || []).forEach(function(exp){
+    var clean = normalizeExpense(exp);
+    var sig = expenseSignature(clean);
+    var matchedId = signatureToId[sig];
+    if(matchedId && matchedId !== clean.id){
+      clean.id = matchedId;
+      delete clean._legacyNoId;
+      byId[matchedId] = clean;
+      return;
+    }
+    if(exp._pendingSync || !byId[clean.id]){
+      byId[clean.id] = clean;
+      signatureToId[sig] = clean.id;
+    }
+  });
+
+  if(state.pendingMeta && state.pendingMeta.participants){
+    merged.participants = getParticipants().slice();
+  }
+  if(state.pendingMeta && state.pendingMeta.fxRate){
+    merged.fxRate = asNumber(state.fxRate) || 190;
+  }
+
+  merged.expenses = Object.keys(byId).map(function(id){
+    var exp = byId[id];
+    delete exp._legacyNoId;
+    return exp;
+  });
+  return merged;
+}
+
+function normalizeCode(v){
+  var code = String(v || '').trim().toLowerCase();
+  code = code.replace(/[^a-z0-9_-]/g, '');
+  if(!code) code = '2610yb';
+  return code.slice(0, 20);
+}
+
+function normalizePin(v){
+  return String(v || '').replace(/\D/g, '').slice(0, 4);
+}
+
+function getAuthKey(){
+  return 'baekdu_pin_ok_' + travelCode;
+}
+
+function isUnlocked(){
+  try{ return localStorage.getItem(getAuthKey()) === '1'; }catch(e){ return false; }
+}
+
+function unlockWithPin(pin){
+  if(normalizePin(pin) !== tripPin) return false;
+  try{ localStorage.setItem(getAuthKey(), '1'); }catch(e){}
+  return true;
+}
+
+function lockCurrentCode(){
+  try{ localStorage.removeItem(getAuthKey()); }catch(e){}
+}
+
+function getLocalKey(){
+  return key + '_' + travelCode;
+}
+
+function exportState(){
+  return {
+    participants: getParticipants(),
+    fxRate: asNumber(state.fxRate) || 0,
+    expenses: (state.expenses || []).map(function(exp){
+      return {
+        id: ensureExpenseId(exp),
+        payer: String(exp.payer || '').trim(),
+        item: String(exp.item || '').trim(),
+        currency: exp.currency === 'CNY' ? 'CNY' : 'KRW',
+        amount: asNumber(exp.amount),
+        included: exp.included !== false
+      };
+    }),
+    deletedExpenseIds: (state.deletedExpenseIds || []).slice(),
+    pendingMeta: normalizePendingMeta(state.pendingMeta)
+  };
+}
+
+function applyState(data){
+  if(!data || typeof data !== 'object') return;
+  if(Array.isArray(data.participants)){
+    state.participants = data.participants;
+  }else if(typeof data.participants === 'string'){
+    state.participants = data.participants.split(',');
+  }
+  state.fxRate = asNumber(data.fxRate) || 190;
+  state.expenses = Array.isArray(data.expenses) ? data.expenses.map(normalizeExpense) : [];
+  state.deletedExpenseIds = Array.isArray(data.deletedExpenseIds) ? data.deletedExpenseIds.slice() : [];
+  state.pendingMeta = normalizePendingMeta(data.pendingMeta);
+  state.expenses.forEach(function(exp){
+    if(typeof exp.included === 'undefined') exp.included = true;
+    if(!data.pendingMeta && !data.deletedExpenseIds) delete exp._pendingSync;
+  });
+}
+
+function initFirebase(){
+  try{
+    if(!window.firebase){
+      setRemoteStatus('Firebase SDK 로드 실패');
+      return;
+    }
+    if(!firebase.apps.length){
+      firebase.initializeApp(firebaseConfig);
+    }
+    remote.db = firebase.firestore();
+    remote.enabled = true;
+    setRemoteStatus(isUnlocked() ? '공유 저장 연결됨' : '');
+  }catch(e){
+    remote.enabled = false;
+    setRemoteStatus('공유 저장 연결 실패');
+  }
+}
+
+function getRemoteDoc(){
+  if(!remote.enabled || !remote.db) return null;
+  return remote.db.collection('tripSettlements').doc(travelCode);
+}
+
+function saveRemoteNow(){
+  if(!isUnlocked()){
+    setRemoteStatus('잠금 상태입니다. 사용자 버튼에서 PIN을 입력해 주세요');
+    return Promise.resolve();
+  }
+  if(!navigator.onLine){
+    setRemoteStatus('네트워크가 오프라인입니다. 로컬에만 저장됨');
+    return Promise.resolve();
+  }
+  var ref = getRemoteDoc();
+  if(!ref) return;
+  var payload = exportState();
+  payload.travelCode = travelCode;
+  payload.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+  return ref.set(payload, { merge: true }).then(function(){
+    clearPendingSync();
+    saveLocalOnly();
+    renderAll();
+    setRemoteStatus('공유 저장 완료');
+  }).catch(function(){
+    setRemoteStatus('네트워크가 불안정합니다. 로컬에만 저장됨');
+  });
+}
+
+function saveMergedRemoteNow(remoteData){
+  if(!isUnlocked()) return Promise.resolve();
+  if(!navigator.onLine) return Promise.resolve();
+  var ref = getRemoteDoc();
+  if(!ref) return Promise.resolve();
+  var payload = mergeRemoteWithPending(remoteData || {});
+  payload.travelCode = travelCode;
+  payload.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+  return ref.set(payload, { merge: true }).then(function(){
+    clearPendingSync();
+    applyState(payload);
+    saveLocalOnly();
+    renderAll();
+    setRemoteStatus('공유 저장 완료');
+  }).catch(function(){
+    setRemoteStatus('네트워크가 불안정합니다. 로컬에만 저장됨');
+  });
+}
+
+function queueRemoteSave(){
+  if(!remote.enabled || remote.applying || !isUnlocked()) return;
+  if(remote.syncTimer) clearTimeout(remote.syncTimer);
+  remote.syncTimer = setTimeout(function(){
+    syncRemotePreferringPending();
+  }, 350);
+}
+
+function syncRemotePreferringPending(){
+  if(!isUnlocked()) return Promise.resolve();
+  if(hasPendingSync()){
+    if(!navigator.onLine) return Promise.resolve();
+    var ref = getRemoteDoc();
+    if(!ref) return Promise.resolve();
+    return ref.get().then(function(snap){
+      return saveMergedRemoteNow(snap.exists ? snap.data() : {});
+    }).then(function(){
+      subscribeRemote();
+    }).catch(function(){
+      setRemoteStatus('네트워크가 불안정합니다. 로컬에만 저장됨');
+    });
+  }
+  loadRemoteNow();
+  subscribeRemote();
+  return Promise.resolve();
+}
+
+function subscribeRemote(){
+  if(remote.unsub){
+    remote.unsub();
+    remote.unsub = null;
+  }
+  var ref = getRemoteDoc();
+  if(!ref){
+    setRemoteStatus('공유 저장 비활성');
+    return;
+  }
+  if(!isUnlocked()){
+    setRemoteStatus('잠금 상태입니다. 사용자 버튼에서 PIN을 입력해 주세요');
+    return;
+  }
+  if(!navigator.onLine){
+    setRemoteStatus('오프라인: 로컬 데이터 사용 중');
+    return;
+  }
+  setRemoteStatus('실시간 동기화 연결 중...');
+  remote.unsub = ref.onSnapshot(function(snap){
+    if(!snap.exists) {
+      setRemoteStatus('저장된 데이터가 없어요');
+      return;
+    }
+    remote.applying = true;
+    applyState(snap.data());
+    renderAll();
+    saveLocalOnly();
+    remote.applying = false;
+    setRemoteStatus('실시간 동기화 중');
+  }, function(){
+    setRemoteStatus('실시간 동기화 실패');
+  });
+}
+
+function loadRemoteNow(){
+  if(!isUnlocked()){
+    setRemoteStatus('잠금 상태입니다. 사용자 버튼에서 PIN을 입력해 주세요');
+    return;
+  }
+  if(!navigator.onLine){
+    setRemoteStatus('오프라인: 로컬 데이터 사용 중');
+    renderAll();
+    return;
+  }
+  var ref = getRemoteDoc();
+  if(!ref) return;
+  setRemoteStatus('불러오는 중...');
+  ref.get().then(function(snap){
+    if(!snap.exists){
+      setRemoteStatus('저장된 데이터가 없어요');
+      return;
+    }
+    applyState(snap.data());
+    renderAll();
+    saveLocalOnly();
+    setRemoteStatus('불러오기 완료');
+  }).catch(function(){
+    setRemoteStatus('불러오기 실패');
+  });
+}
+
+function saveLocalOnly(){
+  try{ localStorage.setItem(getLocalKey(), JSON.stringify(state)); }catch(e){}
+}
+
+function save(){
+  saveLocalOnly();
+  if(!isUnlocked()) showEditNotice('로그인 해주세요! 현재 변경은 이 기기에만 저장돼요.');
+  queueRemoteSave();
+}
+
+function saveWithPending(mode){
+  if(mode === 'all'){
+    markAllExpensesPending();
+  }else if(typeof mode === 'number'){
+    markExpensePending(mode);
+  }else if(mode === 'participants'){
+    markPendingMeta('participants');
+    markAllExpensesPending();
+  }else if(mode === 'fxRate'){
+    markPendingMeta('fxRate');
+    markAllExpensesPending();
+  }
+  save();
+}
+
+function load(){
+  try{
+    var raw = localStorage.getItem(getLocalKey());
+    if(!raw) return;
+    var parsed = JSON.parse(raw);
+    if(parsed && typeof parsed === 'object') applyState(parsed);
+  }catch(e){}
+}
+
+function getParticipants(){
+  var names = (state.participants || []).map(function(v){ return String(v).trim(); }).filter(Boolean);
+  var seen = {};
+  return names.filter(function(n){
+    if(seen[n]) return false;
+    seen[n] = true;
+    return true;
+  });
+}
+
+function addParticipant(name){
+  var clean = String(name || '').trim();
+  if(!clean) return false;
+  var participants = getParticipants();
+  if(participants.indexOf(clean) !== -1) return false;
+  participants.push(clean);
+  state.participants = participants;
+  markPendingMeta('participants');
+  return true;
+}
+
+function removeParticipant(name){
+  var used = state.expenses.some(function(exp){ return (exp.payer || '').trim() === name; });
+  if(used) return false;
+  state.participants = getParticipants().filter(function(v){ return v !== name; });
+  markPendingMeta('participants');
+  return true;
+}
+
+function expenseToKrw(exp){
+  var amount = asNumber(exp.amount);
+  if(exp.currency === 'CNY') return amount * asNumber(state.fxRate);
+  return amount;
+}
+
+function deleteExpense(idx){
+  var target = state.expenses[idx];
+  if(target && target.id){
+    state.deletedExpenseIds = state.deletedExpenseIds || [];
+    if(state.deletedExpenseIds.indexOf(target.id) === -1) state.deletedExpenseIds.push(target.id);
+  }
+  state.expenses.splice(idx, 1);
+  saveWithPending('all');
+  renderAll();
+}
+
+function bindRowDeleteGesture(row, idx){
+  var startX = 0;
+  var deltaX = 0;
+  var tracking = false;
+  var mouseTracking = false;
+
+  row.classList.add('swipe-row');
+  row.setAttribute('title', '왼쪽으로 밀거나 우클릭해서 삭제');
+
+  row.addEventListener('contextmenu', function(e){
+    if(e.target.closest && e.target.closest('input,button,select,label')) return;
+    e.preventDefault();
+    if(confirm('삭제하시겠습니까?')){
+      deleteExpense(idx);
+    }
+  });
+
+  row.addEventListener('touchstart', function(e){
+    if(!e.touches || e.touches.length !== 1) return;
+    if(e.target.closest && e.target.closest('input,button,select,label')) return;
+    tracking = true;
+    startX = e.touches[0].clientX;
+    deltaX = 0;
+    row.classList.remove('swipe-armed');
+  }, { passive: true });
+
+  row.addEventListener('touchmove', function(e){
+    if(!tracking || !e.touches || e.touches.length !== 1) return;
+    deltaX = e.touches[0].clientX - startX;
+    if(deltaX > 0) deltaX = 0;
+    if(deltaX < -80) deltaX = -80;
+    row.style.transform = 'translateX(' + deltaX + 'px)';
+    row.classList.toggle('swipe-armed', deltaX <= -56);
+  }, { passive: true });
+
+  row.addEventListener('touchend', function(){
+    if(!tracking) return;
+    tracking = false;
+    if(deltaX <= -70){
+      row.style.transform = '';
+      row.classList.remove('swipe-armed');
+      if(confirm('삭제하시겠습니까?')){
+        deleteExpense(idx);
+      }
+      return;
+    }
+    row.style.transform = '';
+    row.classList.remove('swipe-armed');
+  });
+
+  row.addEventListener('mousedown', function(e){
+    if(e.button !== 0) return;
+    if(e.target.closest && e.target.closest('input,button,select,label')) return;
+    mouseTracking = true;
+    startX = e.clientX;
+    deltaX = 0;
+    row.classList.remove('swipe-armed');
+    document.body.style.userSelect = 'none';
+  });
+
+  row.addEventListener('mousemove', function(e){
+    if(!mouseTracking) return;
+    deltaX = e.clientX - startX;
+    if(deltaX > 0) deltaX = 0;
+    if(deltaX < -80) deltaX = -80;
+    row.style.transform = 'translateX(' + deltaX + 'px)';
+    row.classList.toggle('swipe-armed', deltaX <= -56);
+  });
+
+  function endMouseSwipe(){
+    if(!mouseTracking) return;
+    mouseTracking = false;
+    document.body.style.userSelect = '';
+    if(deltaX <= -70){
+      row.style.transform = '';
+      row.classList.remove('swipe-armed');
+      if(confirm('삭제하시겠습니까?')){
+        deleteExpense(idx);
+      }
+      return;
+    }
+    row.style.transform = '';
+    row.classList.remove('swipe-armed');
+  }
+
+  row.addEventListener('mouseup', endMouseSwipe);
+  row.addEventListener('mouseleave', endMouseSwipe);
+}
+
+function renderTable(){
+  var body = byId('expenseTable').querySelector('tbody');
+  var showKrwOnly = !!uiState.showKrwOnly;
+  body.innerHTML = '';
+  if(!state.expenses.length){
+    body.innerHTML = '<tr><td colspan="4" style="color:var(--mute)">아직 입력된 비용이 없어요.</td></tr>';
+    return;
+  }
+  state.expenses.forEach(function(exp, idx){
+    var included = typeof exp.included === 'undefined' ? true : !!exp.included;
+    var tr = document.createElement('tr');
+    if(exp._pendingSync) tr.className = 'expense-pending';
+    var krwText = fmtKrw(expenseToKrw(exp));
+    var amountText = showKrwOnly ? krwText : (exp.currency === 'CNY' ? fmtCnySymbol(asNumber(exp.amount)) : fmtKrwSymbol(asNumber(exp.amount)));
+    var amountClass = showKrwOnly ? 'amount-cell krw-only' : 'amount-cell';
+    var amountDetail = '';
+    tr.innerHTML = '<td class="payer-cell">' + exp.payer + '</td>' +
+      '<td>' + exp.item + '</td>' +
+      '<td class="' + amountClass + '">' + amountText + amountDetail + '</td>' +
+      '<td class="include-cell"><input type="checkbox" data-inc="' + idx + '"' + (included ? ' checked' : '') + '></td>';
+    body.appendChild(tr);
+    bindRowDeleteGesture(tr, idx);
+  });
+  body.querySelectorAll('input[data-inc]').forEach(function(chk){
+    chk.addEventListener('change', function(){
+      var idx = parseInt(chk.getAttribute('data-inc'), 10);
+      state.expenses[idx].included = chk.checked;
+      saveWithPending(idx);
+      renderTable();
+      renderSettlement();
+    });
+  });
+}
+
+function renderParticipants(){
+  var wrap = byId('participantList');
+  if(!wrap) return;
+  var participants = getParticipants();
+  wrap.innerHTML = '';
+  if(!participants.length){
+    wrap.innerHTML = '<span style="color:var(--mute);font-size:11px">참여자가 없어요.</span>';
+    return;
+  }
+  participants.forEach(function(name){
+    var chip = document.createElement('span');
+    chip.className = 'participant-chip';
+    chip.innerHTML = '<span>' + name + '</span><button type="button" data-remove="' + name + '">×</button>';
+    wrap.appendChild(chip);
+  });
+  wrap.querySelectorAll('button[data-remove]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = btn.getAttribute('data-remove');
+      if(!removeParticipant(target)){
+        alert('이미 결제 내역에 사용된 참여자는 삭제할 수 없어요.');
+        return;
+      }
+      saveWithPending('all');
+      renderAll();
+    });
+  });
+}
+
+function renderPayerOptions(){
+  var select = byId('payerInput');
+  var participants = getParticipants();
+  var current = select.value;
+  select.innerHTML = '';
+  if(!participants.length){
+    var empty = document.createElement('option');
+    empty.value = '';
+    empty.textContent = '참여자 없음';
+    select.appendChild(empty);
+    select.disabled = true;
+    return;
+  }
+  select.disabled = false;
+  participants.forEach(function(name){
+    var opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    select.appendChild(opt);
+  });
+  if(current && participants.indexOf(current) !== -1){
+    select.value = current;
+  }
+}
+
+function renderSettlement(){
+  var summary = byId('summaryContent');
+  var transfer = byId('transferContent');
+  var participants = getParticipants();
+  var paid = {};
+  var total = 0;
+  var includedCount = 0;
+
+  state.expenses.forEach(function(exp){
+    if(exp.included === false) return;
+    includedCount += 1;
+    var payer = (exp.payer || '').trim();
+    var krw = expenseToKrw(exp);
+    total += krw;
+    if(!paid[payer]) paid[payer] = 0;
+    paid[payer] += krw;
+    if(payer && participants.indexOf(payer) === -1) participants.push(payer);
+  });
+
+  if(!participants.length){
+    summary.innerHTML = '참여자를 먼저 입력해 주세요.';
+    transfer.innerHTML = '정산할 참여자가 없어요.';
+    return;
+  }
+
+  if(includedCount === 0){
+    summary.innerHTML = '정산에 포함된 항목이 없어요. 표에서 체크해 주세요.';
+    transfer.innerHTML = '현재 송금이 필요 없어요.';
+    return;
+  }
+
+  var perPerson = total / participants.length;
+  var lines = ['<table><tr><th>이름</th><th>결제 합계</th><th>미정산 금액</th></tr>'];
+  var creditors = [];
+  var debtors = [];
+
+  participants.forEach(function(name){
+    var paidAmount = paid[name] || 0;
+    var balance = paidAmount - perPerson;
+    var unsettledText = balance >= 0 ? ('+' + fmtKrw(balance)) : ('-' + fmtKrw(Math.abs(balance)));
+    lines.push('<tr><td>' + name + '</td><td>' + fmtKrw(paidAmount) + '</td><td>' + unsettledText + '</td></tr>');
+    if(balance > 1) creditors.push({name:name, amount:balance});
+    if(balance < -1) debtors.push({name:name, amount:-balance});
+  });
+  lines.push('</table>');
+  lines.push('<p class="note" style="margin:8px 0 0">총합 ' + fmtKrw(total) + ' (1인 부담금 ' + fmtKrw(perPerson) + ') </p>');
+  summary.innerHTML = lines.join('');
+
+  var moves = [];
+  var i = 0;
+  var j = 0;
+  while(i < debtors.length && j < creditors.length){
+    var d = debtors[i];
+    var c = creditors[j];
+    var amt = Math.min(d.amount, c.amount);
+    moves.push(d.name + ' → ' + c.name + ' : ' + fmtKrw(amt) + ' (약 ' + fmtCny(amt / asNumber(state.fxRate || 1)) + ')');
+    d.amount -= amt;
+    c.amount -= amt;
+    if(d.amount <= 1) i += 1;
+    if(c.amount <= 1) j += 1;
+  }
+
+  if(!moves.length){
+    transfer.innerHTML = '현재 송금이 필요 없어요.';
+    return;
+  }
+  transfer.innerHTML = '<ul><li>' + moves.join('</li><li>') + '</li></ul>';
+}
+
+function renderAll(){
+  var participants = getParticipants();
+  if(!participants.length){
+    state.participants = ['소민', '아영'];
+  }else{
+    state.participants = participants;
+  }
+  renderParticipants();
+  renderPayerOptions();
+  byId('fxRateInput').value = state.fxRate;
+  if(byId('unlockBtn')){
+    byId('unlockBtn').textContent = isUnlocked() ? 'LOG OUT' : 'LOG IN';
+    byId('unlockBtn').setAttribute('title', isUnlocked() ? '로그아웃' : '로그인');
+    byId('unlockBtn').setAttribute('aria-label', isUnlocked() ? '로그아웃' : '로그인');
+  }
+  if(byId('toggleKrwViewBtn')){
+    byId('toggleKrwViewBtn').textContent = '₩';
+    byId('toggleKrwViewBtn').setAttribute('title', uiState.showKrwOnly ? '원래 통화도 보기' : '원화로만 보기');
+    byId('toggleKrwViewBtn').setAttribute('aria-label', uiState.showKrwOnly ? '원래 통화도 보기' : '원화로만 보기');
+    byId('toggleKrwViewBtn').style.opacity = uiState.showKrwOnly ? '1' : '0.6';
+  }
+  renderTable();
+  renderSettlement();
+}
+
+function bind(){
+  var openBtn = byId('openSettlementBtn');
+  var closeBtn = byId('closeSettlementBtn');
+  var openSettingsBtn = byId('openSettingsBtn');
+  var closeSettingsBtn = byId('closeSettingsBtn');
+  var unlockBtn = byId('unlockBtn');
+  var closeUnlockBtn = byId('closeUnlockBtn');
+  var unlockSubmitBtn = byId('unlockSubmitBtn');
+  var applyFxBtn = byId('applyFxBtn');
+  var toggleKrwViewBtn = byId('toggleKrwViewBtn');
+  var logoutBtn = byId('logoutBtn');
+  var settingsModal = byId('settingsModal');
+  var unlockModal = byId('unlockModal');
+  var settlementPage = byId('settlementPage');
+  var unlockPinInput = byId('unlockPinInput');
+  var unlockError = byId('unlockError');
+  var unlockFormSection = byId('unlockFormSection');
+  var unlockLoggedInSection = byId('unlockLoggedInSection');
+
+  function setUnlockError(message){
+    if(unlockError) unlockError.textContent = message || '';
+    if(unlockPinInput) unlockPinInput.style.borderColor = message ? '#c23a3a' : 'var(--line)';
+  }
+
+  function renderUnlockModal(){
+    var unlocked = isUnlocked();
+    if(unlockFormSection) unlockFormSection.hidden = unlocked;
+    if(unlockLoggedInSection) unlockLoggedInSection.hidden = !unlocked;
+    if(unlockPinInput) unlockPinInput.value = '';
+    setUnlockError('');
+  }
+
+  function openModalEl(el){
+    if(!el) return;
+    el.classList.add('active');
+    el.setAttribute('aria-hidden', 'false');
+  }
+  function closeModalEl(el){
+    if(!el) return;
+    el.classList.remove('active');
+    el.setAttribute('aria-hidden', 'true');
+  }
+
+  if (openBtn) {
+    openBtn.addEventListener('click', openSettlementPage);
+  }
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeSettlementPage);
+  }
+
+  if(openSettingsBtn){
+    openSettingsBtn.addEventListener('click', function(){
+      renderAll();
+      openModalEl(settingsModal);
+    });
+  }
+  if(closeSettingsBtn){
+    closeSettingsBtn.addEventListener('click', function(){ closeModalEl(settingsModal); });
+  }
+  if(unlockBtn){
+    unlockBtn.addEventListener('click', function(){
+      renderUnlockModal();
+      openModalEl(unlockModal);
+    });
+  }
+  if(closeUnlockBtn){
+    closeUnlockBtn.addEventListener('click', function(){ closeModalEl(unlockModal); });
+  }
+  if(unlockSubmitBtn){
+    unlockSubmitBtn.addEventListener('click', function(){
+      var pin = unlockPinInput.value;
+      if(!unlockWithPin(pin)){
+        setUnlockError('PIN이 맞지 않아요. 다시 입력해 주세요.');
+        return;
+      }
+      closeModalEl(unlockModal);
+      renderAll();
+      setRemoteStatus('잠금 해제됨. 공유 동기화 시작');
+      syncRemotePreferringPending();
+    });
+  }
+  if(logoutBtn){
+    logoutBtn.addEventListener('click', function(){
+      lockCurrentCode();
+      closeModalEl(unlockModal);
+      renderAll();
+      setRemoteStatus('');
+      if(remote.unsub){
+        remote.unsub();
+        remote.unsub = null;
+      }
+    });
+  }
+  if(applyFxBtn){
+    applyFxBtn.addEventListener('click', function(){
+      state.fxRate = asNumber(byId('fxRateInput').value) || 0;
+      saveWithPending('fxRate');
+      renderAll();
+      setRemoteStatus('환율 적용됨');
+    });
+  }
+  if(toggleKrwViewBtn){
+    toggleKrwViewBtn.addEventListener('click', function(){
+      uiState.showKrwOnly = !uiState.showKrwOnly;
+      renderAll();
+    });
+  }
+
+  if(settlementPage){
+    var pullStartY = 0;
+    var pullActive = false;
+    var pullDone = false;
+    var pullPointerId = null;
+    var pullThreshold = 76;
+    function pullBlocked(target){
+      return !!(target && target.closest('input,select,button,textarea,a,label,#expenseTable tbody tr'));
+    }
+    function startPull(clientY, target){
+      if(!settlementPage.classList.contains('active')) return false;
+      if(settlementPage.scrollTop > 0) return false;
+      if(pullBlocked(target)) return false;
+      pullStartY = clientY;
+      pullActive = true;
+      pullDone = false;
+      document.body.style.userSelect = 'none';
+      setPullIndicator('새로고침하기', 0, false);
+      return true;
+    }
+    function movePull(clientY){
+      if(!pullActive || pullDone) return;
+      var delta = clientY - pullStartY;
+      if(delta <= 0){
+        setPullIndicator('새로고침하기', 0, false);
+        return;
+      }
+      setPullIndicator(delta >= pullThreshold ? '손을 놓아 새로고침' : '새로고침하기', delta, true);
+      if(delta > pullThreshold){
+        pullDone = true;
+        setPullIndicator('새로고침 중...', 52, true);
+        syncRemotePreferringPending();
+      }
+    }
+    function endPull(){
+      pullActive = false;
+      pullPointerId = null;
+      document.body.style.userSelect = '';
+      setPullIndicator('', 0, false);
+    }
+    settlementPage.addEventListener('touchstart', function(e){
+      if(!e.touches || !e.touches.length) return;
+      startPull(e.touches[0].clientY, e.target);
+    }, { passive: true });
+    settlementPage.addEventListener('touchmove', function(e){
+      if(!e.touches || !e.touches.length) return;
+      movePull(e.touches[0].clientY);
+    }, { passive: true });
+    settlementPage.addEventListener('touchend', function(){
+      endPull();
+    }, { passive: true });
+
+    settlementPage.addEventListener('pointerdown', function(e){
+      if(e.pointerType !== 'mouse' || e.button !== 0) return;
+      if(!startPull(e.clientY, e.target)) return;
+      pullPointerId = e.pointerId;
+      settlementPage.setPointerCapture(e.pointerId);
+    });
+    settlementPage.addEventListener('pointermove', function(e){
+      if(e.pointerType !== 'mouse') return;
+      if(pullPointerId !== e.pointerId) return;
+      movePull(e.clientY);
+    });
+    settlementPage.addEventListener('pointerup', function(e){
+      if(pullPointerId === e.pointerId) endPull();
+    });
+    settlementPage.addEventListener('pointercancel', function(e){
+      if(pullPointerId === e.pointerId) endPull();
+    });
+  }
+
+  window.addEventListener('click', function(e){
+    if(e.target === settingsModal) closeModalEl(settingsModal);
+    if(e.target === unlockModal) closeModalEl(unlockModal);
+  });
+
+  byId('unlockPinInput').addEventListener('keydown', function(e){
+    if(e.key !== 'Enter') return;
+    e.preventDefault();
+    byId('unlockSubmitBtn').click();
+  });
+  byId('unlockPinInput').addEventListener('input', function(){
+    setUnlockError('');
+  });
+
+  var toggleParticipantBtn = byId('toggleParticipantBtn');
+  if(toggleParticipantBtn){
+    toggleParticipantBtn.addEventListener('click', function(){
+      openModalEl(settingsModal);
+    });
+  }
+
+  byId('addParticipantBtn').addEventListener('click', function(){
+    var input = byId('participantInput');
+    if(!addParticipant(input.value)){
+      alert('참여자 이름을 확인해 주세요. (빈 값/중복 불가)');
+      return;
+    }
+    input.value = '';
+    saveWithPending('participants');
+    renderAll();
+  });
+
+  byId('participantInput').addEventListener('keydown', function(e){
+    if(e.key !== 'Enter') return;
+    e.preventDefault();
+    byId('addParticipantBtn').click();
+  });
+
+  byId('fxRateInput').addEventListener('keydown', function(e){
+    if(e.key !== 'Enter') return;
+    e.preventDefault();
+    byId('applyFxBtn').click();
+  });
+
+  ['payerInput','itemInput','currencyInput','amountInput'].forEach(function(id){
+    byId(id).addEventListener('keydown', function(e){
+      if(e.key !== 'Enter') return;
+      e.preventDefault();
+      byId('addExpenseBtn').click();
+    });
+  });
+
+  byId('addExpenseBtn').addEventListener('click', function(){
+    var payer = byId('payerInput').value.trim();
+    var item = byId('itemInput').value.trim();
+    var currency = byId('currencyInput').value;
+    var amount = asNumber(byId('amountInput').value);
+    if(!payer || !item || amount <= 0){
+      alert('결제자, 항목, 금액을 입력해 주세요.');
+      return;
+    }
+    state.expenses.push({id:createExpenseId(), payer:payer, item:item, currency:currency, amount:amount, included:true});
+    byId('itemInput').value = '';
+    byId('amountInput').value = '';
+    saveWithPending(state.expenses.length - 1);
+    renderAll();
+  });
+
+  window.addEventListener('online', function(){
+    setRemoteStatus('온라인 복구됨. 공유 동기화 재개');
+    subscribeRemote();
+    queueRemoteSave();
+  });
+
+  window.addEventListener('offline', function(){
+    setRemoteStatus('오프라인: 로컬 데이터 사용 중');
+  });
+
+  window.addEventListener('settlement:opened', function(){
+    syncRemotePreferringPending();
+  });
+}
+
+load();
+initFirebase();
+if(byId('expenseTable')){
+  bind();
+  renderAll();
+}
+})();
+</script>
+
+<script>
+(function(){
+var tabs=document.querySelectorAll('[role="tab"]');
+function show(n){
+tabs.forEach(function(b,i){
+var on=(i===n);
+b.setAttribute('aria-selected',on?'true':'false');
+document.getElementById('p'+i).hidden=!on;
+});
+try{window.scrollTo(0,0);}catch(e){}
+}
+tabs.forEach(function(b,i){b.addEventListener('click',function(){show(i);});});
+})();
+</script>
+</body>
+</html>
